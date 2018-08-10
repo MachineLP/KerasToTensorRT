@@ -17,7 +17,7 @@ class TrtEngine():
   def __init__(self, model, batch_size):
     # get Tensorflow graph object from Keras
     with K.get_session() as sess:
-      image_batch_t = tf.placeholder(tf.float32,
+      image_batch_t = tf.placeholder(tf.float32, 
         shape=(None, 1, 28, 28),
         name='image_tensor')
       K.set_learning_phase(0)
@@ -40,8 +40,8 @@ class TrtEngine():
       stream=uff_model,
       parser=parser,
       max_batch_size=batch_size,
-      max_workspace_size=1 << 25,
-      datatype='FP32')
+      max_workspace_size=1 << 25)
+    # datatype='FP32')
 
     parser.destroy()
 
